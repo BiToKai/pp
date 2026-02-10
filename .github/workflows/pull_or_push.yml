@@ -1,0 +1,28 @@
+name: "Pull or Push ?"
+
+# Déclencheurs pour le Push et la Pull Request
+on:
+  push:
+  pull_request:
+
+env:
+  MSG_PUSH: "C'est un push !"
+  MSG_PR: "C'est une pull request !"
+
+jobs:
+  job_push:
+    runs-on: ubuntu-latest
+    #Si c'est un push : vous affichez "C'est un push !"
+    if: ${{ github.event_name == 'push' }}
+    steps:
+      - name: "Affichage Message Push"
+        run: echo "$MSG_PUSH"
+
+  job_pr:
+    runs-on: ubuntu-latest
+    #Si c'est une pull request : vous afficherez "C'est une pull request !"
+    if: ${{ github.event_name == 'pull_request' }}
+    steps:
+      - name: "Affichage Message PR"
+        run: echo "$MSG_PR"
+
